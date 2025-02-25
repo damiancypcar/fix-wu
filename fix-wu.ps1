@@ -57,10 +57,18 @@ function Start-WUServices {
 
 
 function Main {
-    Stop-WUServices
-    Remove-WUCache
-    Start-WUServices
-    Write-Output "Restart the Computer"
+    Write-Output "`nFixes Windows Update stuck problem"
+    $confirmation = Read-Host "`nAre you sure you want to proceed (y/N)?"
+    if ($confirmation -eq 'y') {
+        Stop-WUServices
+        Remove-WUCache
+        Start-WUServices
+        Write-Output "Done"
+        Write-Output "Restart the Computer"
+    } else {
+        Write-Output "Exiting"
+        break
+    }
 }
 
 if ($help) {
