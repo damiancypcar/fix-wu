@@ -13,5 +13,5 @@ Fixes Windows Update stuck problem
 3. Run script directly from the web
 
     ```powershell
-    irm http://webpage.com/script.ps1 | iex
+    irm 'https://raw.githubusercontent.com/damiancypcar/fix-wu/refs/heads/main/fix-wu.ps1' | iex
     ```

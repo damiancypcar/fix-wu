@@ -22,7 +22,7 @@ function Show-Help {
     Write-Output "`n2. Set the execution policy"
     Write-Output "    >  Set-ExecutionPolicy Bypass -Scope Process -Force"
     Write-Output "`n3. Run script directly from the web"
-    Write-Output "    >  irm http://webpage.com/script.ps1 | iex"
+    Write-Output "    >  irm 'https://raw.githubusercontent.com/damiancypcar/fix-wu/refs/heads/main/fix-wu.ps1' | iex"
     break
 }
 
