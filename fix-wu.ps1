@@ -35,24 +35,48 @@ function Show-Help {
 
 function Stop-WUServices {
     # Stop Windows Update Services
+
+    Write-Output "`nStopping Windows Update services"
+
+    Write-Output "  > Stopping Windows Update Service (wuauserv)..."
     Stop-Service -Name wuauserv -Force
+
+    Write-Output "  > Stopping Cryptographic Services (cryptSvc)..."
     Stop-Service -Name cryptSvc -Force
+
+    Write-Output "  > Stopping Background Intelligent Transfer Service (BITS)..."
     Stop-Service -Name bits -Force
+
+    Write-Output "  > Stopping Windows Installer Service (msiserver)..."
     Stop-Service -Name msiserver -Force
 }
 
 function Remove-WUCache {
     # Delete Windows Update Cache
+    Write-Output "`nRemoving Windows Update cache"
+
+    Write-Output "  > Removing SoftwareDistribution folder..."
     Remove-Item -Path "C:\Windows\SoftwareDistribution" -Recurse -Force
+
+    Write-Output "  > Removing catroot2 folder..."
     Remove-Item -Path "C:\Windows\System32\catroot2" -Recurse -Force
 }
 
 function Start-WUServices {
     # Start Windows Update Services
+    Write-Output "`nStarting Windows Update services"
+
+    Write-Output "  > Starting Windows Update Service (wuauserv)..."
     Start-Service -Name wuauserv
+
+    Write-Output "  > Starting Cryptographic Services (cryptSvc)..."
     Start-Service -Name cryptSvc
+
+    Write-Output "  > Starting Background Intelligent Transfer Service (BITS)..."
     Start-Service -Name bits
-    Start-Service -Name msiserver    
+
+    Write-Output "  > Starting Windows Installer Service (msiserver)..."
+    Start-Service -Name msiserver
 }
 
 
@@ -63,7 +87,7 @@ function Main {
         Stop-WUServices
         Remove-WUCache
         Start-WUServices
-        Write-Output "Done"
+        Write-Output "`nDone"
         Write-Output "Restart the Computer"
     } else {
         Write-Output "Exiting"
